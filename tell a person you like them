@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Für mein Schatz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+        }
+
+        h1 {
+            font-size: 48px;
+            color: #e91e63;
+            margin-bottom: 30px;
+            font-weight: normal;
+            letter-spacing: 2px;
+        }
+
+        .hearts {
+            font-size: 40px;
+            margin: 20px 0;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+
+        .decoration {
+            color: #e91e63;
+            opacity: 0.6;
+            margin: 20px 0;
+        }
+
+        .link-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 40px;
+            background: #e91e63;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .link-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.4);
+        }
+
+        #heartsContainer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 40px;
+            animation: floatUp 2s ease-in-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <div id="heartsContainer"></div>
+    
+    <div class="container">
+        <div class="hearts">❤️</div>
+        <h1>Ich habe dich ganz dolle lieb</h1>
+        <div class="decoration">✨ 💕 ✨</div>
+        <button id="heartButton" class="link-button">Klick mich 💕</button>
+    </div>
+
+    <script>
+        document.getElementById('heartButton').addEventListener('click', function() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.top = Math.random() * 50 + 50 + '%';
+            document.getElementById('heartsContainer').appendChild(heart);
+            
+            setTimeout(function() {
+                heart.remove();
+            }, 2000);
+        });
+    </script>
+</body>
+</html>  
